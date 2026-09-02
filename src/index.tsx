@@ -1,4 +1,13 @@
-import { List, ActionPanel, Action, showToast, Toast, Icon, Color, closeMainWindow } from "@raycast/api";
+import {
+  List,
+  ActionPanel,
+  Action,
+  showToast,
+  Toast,
+  Icon,
+  Color,
+  closeMainWindow,
+} from "@raycast/api";
 import { useState, useEffect } from "react";
 import { exec, execSync } from "child_process";
 import { existsSync } from "fs";
@@ -30,20 +39,23 @@ export default function Command() {
   useEffect(() => {
     function getVscDatabasePath(): string | null {
       // 1. VS Code 1.118+ 新版共享存储路径
-      const sharedPath = path.join(homedir(), ".vscode-shared/sharedStorage/state.vscdb");
+      const sharedPath = path.join(
+        homedir(),
+        ".vscode-shared/sharedStorage/state.vscdb",
+      );
       if (existsSync(sharedPath)) return sharedPath;
 
       // 2. macOS 传统全局用户存储路径
       const legacyPath = path.join(
         homedir(),
-        "Library/Application Support/Code/User/globalStorage/state.vscdb"
+        "Library/Application Support/Code/User/globalStorage/state.vscdb",
       );
       if (existsSync(legacyPath)) return legacyPath;
 
       // 3. Code - Insiders / Code Next 独立存储路径
       const insiderPath = path.join(
         homedir(),
-        "Library/Application Support/Code - Insiders/User/globalStorage/state.vscdb"
+        "Library/Application Support/Code - Insiders/User/globalStorage/state.vscdb",
       );
       if (existsSync(insiderPath)) return insiderPath;
 
@@ -95,12 +107,12 @@ export default function Command() {
           .filter((entry: any) =>
             Boolean(
               entry &&
-                (typeof entry === "string" ||
-                  entry.folderUri ||
-                  entry.workspace?.configPath ||
-                  entry.fileUri ||
-                  entry.remoteAuthority)
-            )
+              (typeof entry === "string" ||
+                entry.folderUri ||
+                entry.workspace?.configPath ||
+                entry.fileUri ||
+                entry.remoteAuthority),
+            ),
           )
           .map((entry: any, index: number) => {
             let uriStr = "";
@@ -241,7 +253,10 @@ export default function Command() {
   };
 
   return (
-    <List isLoading={isLoading} searchBarPlaceholder="Search repositories & projects...">
+    <List
+      isLoading={isLoading}
+      searchBarPlaceholder="Search repositories & projects..."
+    >
       {errorDetails ? (
         <List.EmptyView
           icon={Icon.ExclamationMark}
@@ -263,8 +278,8 @@ export default function Command() {
                     item.type === "workspace"
                       ? GITHUB_COLORS.purple
                       : item.type === "remote"
-                      ? GITHUB_COLORS.green
-                      : GITHUB_COLORS.gray,
+                        ? GITHUB_COLORS.green
+                        : GITHUB_COLORS.gray,
                 },
               },
             ]}

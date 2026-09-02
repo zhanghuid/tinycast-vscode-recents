@@ -3,15 +3,18 @@
     "name": "vscode-recents",
     "title": "vsc",
     "description": "Quickly open recent VS Code projects using code CLI",
-    "icon": "assets/icon.png",
+    "icon": "icon.png",
     "author": "huid",
+    "categories": [
+        "Developer Tools"
+    ],
     "license": "MIT",
     "commands": [
         {
             "name": "index",
             "title": "Search vscode Recent Projects",
             "description": "List and open recent VS Code projects with code",
-            "icon": "assets/icon.png",
+            "icon": "icon.png",
             "mode": "view"
         }
     ],
