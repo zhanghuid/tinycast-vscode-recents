@@ -48,6 +48,9 @@
         "build:dist": "npm run clean && ray build -o dist",
         "build": "npm run clean && ray build -e dist",
         "dev": "ray develop",
-        "lint": "ray lint"
+        "lint": "ray lint",
+        "fix-lint": "ray lint --fix",
+        "pre-publish": "npm run lint && npm run build",
+        "publish": "npm run pre-publish && npx @raycast/api@latest publish"
     }
 }
