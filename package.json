@@ -1,8 +1,8 @@
 {
     "$schema": "https://www.raycast.com/schemas/extension.json",
-    "name": "vscode-recents",
-    "title": "VS Code Recents",
-    "description": "Quickly open recent VS Code projects using code CLI",
+    "name": "ide-recents",
+    "title": "IDE Recents (VS Code, Trae, Antigravity)",
+    "description": "Search and open recent projects across VS Code, Trae, and Antigravity IDE",
     "icon": "icon.png",
     "author": "huid",
     "categories": [
@@ -12,13 +12,18 @@
     "commands": [
         {
             "name": "index",
-            "title": "Search VS Code Recent Projects",
-            "description": "List and open recent VS Code projects with code",
+            "title": "Search Recent Projects (VS Code)",
+            "subtitle": "VS Code / Trae / Antigravity",
+            "description": "Search and open recent projects across all supported IDEs",
             "icon": "icon.png",
             "keywords": [
                 "vsc",
                 "vscode",
                 "code",
+                "trae",
+                "antigravity",
+                "agy",
+                "ide",
                 "recents",
                 "recent"
             ],
@@ -39,8 +44,9 @@
         "@types/react": "18.2.45"
     },
     "scripts": {
-        "build:dist": "ray build -o dist",
-        "build": "ray build -e dist",
+        "clean": "node -e \"fs.rmSync('dist', { recursive: true, force: true })\"",
+        "build:dist": "npm run clean && ray build -o dist",
+        "build": "npm run clean && ray build -e dist",
         "dev": "ray develop",
         "lint": "ray lint"
     }
